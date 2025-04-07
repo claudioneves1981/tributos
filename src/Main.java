@@ -6,6 +6,8 @@ public class Main {
 
 
     public static void main(String[] args) {
+        int option;
+        Tributos tributos;
 
         do {
             System.out.println("Escolha o produto que deseja calcular o tributo");
@@ -14,26 +16,23 @@ public class Main {
             System.out.println("3 - Vestuário");
             System.out.println("4 - Cultura");
             System.out.println("5 - Sair do Programa");
-            int option = scanner.nextInt();
-            Tributos tributos;
-            if (option == 1)
-                tributos = tributosAlimentacao(digitaPreco());
-            else if (option == 2)
-                tributos = tributosSaude(digitaPreco());
-            else if (option == 3)
-                tributos = tributosVestiario(digitaPreco());
-            else if (option == 4)
-                tributos = tributosCultura(digitaPreco());
-            else if (option == 5)
+            option = scanner.nextInt();
+            switch(option){
+                case 1 : tributos = tributosAlimentacao(digitaPreco());
                 break;
-            else {
-                System.out.println("Opção Invalida");
-                continue;
+                case 2:  tributos = tributosSaude(digitaPreco());
+                break;
+                case 3: tributos = tributosVestiario(digitaPreco());
+                break;
+                case 4: tributos = tributosCultura(digitaPreco());
+                break;
+                case 5: continue;
+                default :
+                    System.out.println("Opção Invalida");
+                    continue;
             }
-
             System.out.println("O preco com imposto é "+ tributos.calculaImposto());
-
-        }while(true);
+        }while(option != 5);
     }
 
     private static double digitaPreco(){
